@@ -172,10 +172,6 @@ plot(om, fgrid)
 performance(fgrid) <- performance(fgrid, statistics=icestats["PBlim"], year=pys,
   type="arule")
 
-# OR ... RUN over Ftarget grid and return only performance stats
-# fgrid <- mps(om, ctrl=arule, args=mseargs, hcr=list(target=fg_mp),
-#   names=paste("F" fg_mp), statistics=icestats, type="arule")
-
 # FIND Ftarget that gives mean P(B < Blim) = 5%
 tune <- tunebisect(om, control=arule, args=mseargs,
   tune=list(target=0.3 * c(0.5, 1.5)),
@@ -192,4 +188,3 @@ args(control(tune, "hcr"))$target
 
 # SAVE
 save("fgrid", "om", "tune", file="model/model.rda")
-
